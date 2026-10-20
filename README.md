@@ -1,0 +1,1 @@
+See [Mergenthaler's documentation](https://github.com/jackr4bbit/mergenthaler/blob/main/plugins.md).

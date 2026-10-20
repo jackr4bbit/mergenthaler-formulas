@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm[toml]>=8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mergenthaler-plugin-template"
+dynamic = ["version"]
+description = "A demo plugin for Mergenthaler."
+requires-python = ">=3.14"
+authors = [
+  { name = "Jack Huey", email = "jhhuey@icloud.com" }
+]
+dependencies = [
+    "mergenthaler~=1.2"
+]
+
+[tool.setuptools_scm]
