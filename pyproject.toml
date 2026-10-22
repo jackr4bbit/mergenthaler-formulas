@@ -3,15 +3,16 @@ requires = ["setuptools>=61.0", "setuptools_scm[toml]>=8.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mergenthaler-plugin-template"
+name = "mergenthaler-formulas"
 dynamic = ["version"]
-description = "A demo plugin for Mergenthaler."
+description = "A Mergenthaler plugin for displaying a widget for rearranging formulas."
 requires-python = ">=3.14"
 authors = [
   { name = "Jack Huey", email = "jhhuey@icloud.com" }
 ]
 dependencies = [
-    "mergenthaler~=1.2"
+    "mergenthaler~=1.2",
+    "sympy~=1.14"
 ]
 
 [tool.setuptools_scm]
