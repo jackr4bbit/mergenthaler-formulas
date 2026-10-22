@@ -1,7 +1,7 @@
 from mergenthaler import Element, Format, Site
 import re
 import sympy
-from sympy.parsing.sympy_parser import parse_expr
+from sympy.parsing.sympy_parser import parse_expr, standard_transformations, convert_xor
 from sympy.printing.mathml import mathml
 from uuid import uuid4
 
@@ -34,7 +34,8 @@ class Formula(Element):
             left = left[:-1] if isApprox else left
 
             symbols = {"E": sympy.Symbol("E"), "I": sympy.Symbol("I")}
-            equation = sympy.Eq(parse_expr(left, local_dict=symbols), parse_expr(right, local_dict=symbols))
+            transformations = standard_transformations + (convert_xor,)
+            equation = sympy.Eq(parse_expr(left, transformations=transformations, local_dict=symbols), parse_expr(right, transformations=transformations, local_dict=symbols))
 
             return cls(left + ("≈" if isApprox else "=") + right, equation, {str(var): sympy.Eq(var, sympy.solve(equation, var)[0]) for var in equation.free_symbols})
 
