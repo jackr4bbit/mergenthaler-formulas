@@ -46,8 +46,10 @@ class Formula(Element):
         def onClick(equation: sympy.Eq) -> str:
             return f"onclick=\"document.getElementById('formula-{self.id}').innerHTML = '{equationToHTML(equation)}'\""
 
-        return f"""<div class="formula">
+        accent = site.colors.get("accent", "#000000")
+
+        return f"""<div class="formula" style="padding: 10px; border: 2px solid {accent}; border-radius: 15px; width: fit-content;">
     <math id="formula-{self.id}" style="cursor: pointer;" {onClick(self.equation)}>{equationToHTML(self.equation)}</math>
-    <div style="white-space: pre; font-size: 80%;">Solve for {" ".join(f"<span style=\"box-sizing: content-box; padding: 5px; height: auto; width: max-content; background-color: #BBBBBB; aspect-ratio: 1 / 1; border-radius: 50em; cursor: pointer;\" {onClick(equation)}>{var}</span>" for var, equation in self.forms.items())}</div>
+    <div style="white-space: pre; font-size: 80%;">Solve for {" ".join(f"<span style=\"box-sizing: content-box; padding: 5px; min-width: 1lh; text-align: center;height: auto; width: max-content; background-color: {accent}; aspect-ratio: 1 / 1; border-radius: 5px; display: inline-block; cursor: pointer;\" {onClick(equation)}>{var}</span>" for var, equation in self.forms.items())}</div>
 </div>
 """
